@@ -98,6 +98,11 @@ func (l *Logger) ServiceName() string {
 	return l.serviceName
 }
 
+// SetServiceName sets the name of the service used by this logger
+func (l *Logger) SetServiceName(name string) {
+	l.serviceName = name
+}
+
 // With adds key-value pairs to the logger context
 func (l *Logger) With() zerolog.Context {
 	return l.zl.With()

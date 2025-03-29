@@ -2,6 +2,22 @@
 
 A high-performance structured logging library for Go based on [zerolog](https://github.com/rs/zerolog), designed to provide a clean API, efficient logs, and a fluid interface for your applications.
 
+## Version
+
+Current version: v0.1.1
+
+### Changelog
+
+#### v0.1.1
+- Added `SetServiceName` method to dynamically update service name after logger creation
+
+#### v0.1.0
+- Initial release
+- Basic logging functionality
+- Structured logging support
+- Environment variable configuration
+- Builder pattern for logger creation
+
 ## Features
 
 - **High Performance**: Optimized for speed and low memory usage
@@ -215,6 +231,10 @@ The main logger instance that provides logging capabilities.
 type Logger struct {
     // Internal fields not exposed
 }
+
+// Methods
+func (l *Logger) SetServiceName(name string)  // Set service name after creation
+func (l *Logger) ServiceName() string         // Get current service name
 ```
 
 #### LogBuilder
@@ -321,9 +341,13 @@ type Config struct {
 Always set a meaningful service name to identify the source of logs:
 
 ```go
+// During logger creation
 logger := logger.NewBuilder().
     WithServiceName("payment-service").
     Build()
+
+// Or after logger creation
+logger.SetServiceName("payment-service")
 ```
 
 ### Structured Logging
